@@ -20,7 +20,6 @@ services:
       dockerfile: docker/php/Dockerfile
     container_name: laravel_app
     restart: unless-stopped
-    user: "${UID:-1000}:${GID:-1000}"
     volumes:
       - ./:/var/www/html
     networks:
@@ -37,6 +36,8 @@ services:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_PASSWORD: secret
       MYSQL_USER: laravel
+    ports:
+      - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
     networks:
