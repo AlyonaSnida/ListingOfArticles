@@ -10,17 +10,19 @@ class ArticleActions
 {
     use SlugTrait;
 
-    static public function getArticlesWithImage(int $limit) {
+    public static function getArticlesWithImage(int $limit)
+    {
         return Article::all()->filter(function ($article) {
             return !empty($article->images);
         })->values()->take($limit);
     }
 
-    static public function getAllArticles(int $limit) {
+    public static function getAllArticles(int $limit)
+    {
         return Article::paginate($limit);
     }
 
-    static public function create(
+    public static function create(
         string $title,
         string $description,
         int $category_id,
@@ -35,12 +37,11 @@ class ArticleActions
         ]);
     }
 
-    static public function show(string $slug_category, string $slug_artiocle): array
+    public static function show(string $slug_category, string $slug_artiocle): array
     {
         $main_category = Category::with(['articles' => function ($query) use ($slug_artiocle) {
             $query->where('slug', $slug_artiocle);
         }])->where('slug', $slug_category)->firstOrFail();
-
         $all_categories = Category::withCount('articles')->get();
 
         return [

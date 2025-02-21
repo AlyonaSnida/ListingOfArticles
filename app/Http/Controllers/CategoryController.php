@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function show(string $slug, GetCategoryRequest $request) {
+    public function show(string $slug, GetCategoryRequest $request)
+    {
         $data = $request->validated();
         $limit = $data['limit'] ?? 3;
         $answer = CategoryActions::show($slug, $limit);

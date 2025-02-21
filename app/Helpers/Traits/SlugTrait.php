@@ -4,7 +4,8 @@ namespace App\Helpers\Traits;
 
 trait SlugTrait
 {
-    static public function makeSlug($string) {
+    public static function makeSlug($string)
+    {
         $string = mb_strtolower(trim($string));
 
         $string = preg_replace('/[^a-zа-яё\s]/u', '', $string);

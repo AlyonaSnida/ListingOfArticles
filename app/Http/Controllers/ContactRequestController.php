@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class ContactRequestController extends Controller
 {
-    public function getContactsPage() {
-        return view('contact',
-        ['categories_info' => CategoryActions::getAllCategories()],
-    );
+    public function getContactsPage()
+    {
+        return view(
+            'contact',
+            ['categories_info' => CategoryActions::getAllCategories()],
+        );
     }
 
     public function sendContacts(Request $request, ContactRequestActions $actions)

@@ -22,7 +22,7 @@ class ContactRequestActions
             'email_user'=>$info['email'],
         );
 
-        Mail::send('emails', $data, function($message) use ($to_name, $to_email) {
+        Mail::send('emails', $data, function ($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
                     ->subject('Тестовое письмо');
             $message->from('your_email@gmail.com', 'Your Name');

@@ -7,7 +7,8 @@ use App\Actions\ArticleActions;
 
 class HomeController extends Controller
 {
-    public function getHomePage() {
+    public function getHomePage()
+    {
         return view(
             'index',
             [

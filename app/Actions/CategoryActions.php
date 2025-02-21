@@ -10,12 +10,12 @@ class CategoryActions
 {
     use SlugTrait;
 
-    static public function getAllCategories(): Collection
+    public static function getAllCategories(): Collection
     {
         return Category::withCount('articles')->get();
     }
 
-    static public function create(string $name): Category
+    public static function create(string $name): Category
     {
         return Category::firstOrCreate([
             'name' => $name,
@@ -23,10 +23,9 @@ class CategoryActions
         ]);
     }
 
-    static public function show(string $slug, int $limit): array
+    public static function show(string $slug, int $limit): array
     {
         $main_category = Category::where('slug', $slug)->firstOrFail();
-
         $all_categories = Category::withCount('articles')->get();
 
         return [
