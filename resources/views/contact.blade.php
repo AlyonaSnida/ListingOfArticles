@@ -52,10 +52,6 @@
                         </a>
                     @endforeach
                 </div>
-
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('contacts.show', []) }}">Contact</a>
-              </li>
             </ul>
 
           </div>

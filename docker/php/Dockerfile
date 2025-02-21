@@ -12,9 +12,10 @@ RUN apk add --no-cache \
     postgresql-dev \
     && docker-php-ext-install pdo_mysql zip exif pcntl
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd
 
-RUN apk add --no-cache nodejs npm
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
 
