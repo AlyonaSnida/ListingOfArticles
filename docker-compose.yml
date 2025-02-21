@@ -30,10 +30,18 @@ services:
       DB_DATABASE: laravel
       DB_USERNAME: laravel
       DB_PASSWORD: secret
+      MAIL_MAILER: smtp
+      MAIL_HOST: mailhog
+      MAIL_PORT: 1025
+      MAIL_USERNAME: null
+      MAIL_PASSWORD: null
+      MAIL_ENCRYPTION: null
+
     networks:
       - laravel_network
     depends_on:
       - db
+      - mailhog
 
   db:
     image: mysql:8.0
@@ -48,6 +56,15 @@ services:
       - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
+    networks:
+      - laravel_network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    restart: unless-stopped
+    ports:
+      - "8025:8025" # Порт для веб-интерфейса MailHog
     networks:
       - laravel_network
 
